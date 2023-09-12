@@ -2,7 +2,7 @@ body {
     background: rgb(204, 255, 0);
     color: rgb(45, 45, 45);
     padding: 10px;
-    font-family: arial;
+    font-family: fantasy;
 }
 #all-contents {
   max-width: 800px;
@@ -16,13 +16,16 @@ nav {
    margin-bottom: 20px;
     display: flex;
     padding: 10px;
+    border: 5px;
 }
 h1 {
     display: flex;
     align-items: center;
-    color: rgb(0, 89, 255);
+    color: rgb(0, 72, 255);
     flex: 1;
     margin: 0;
+    font-size: large;
+    font-style: normal;
 }
 #nav-ul {
     list-style-image: none;
@@ -40,6 +43,8 @@ a {
 main {
     background: rgb(245, 238, 219);
     display: flex;
+    border: #ffff00;
+    border-radius: 23px;
 }
 .sidebar {
     margin-right: 25px;
@@ -47,6 +52,8 @@ main {
 }
 .sidebar-img {
     width: 200px;
+    border: 5px rgb(255, 234, 0) ridge;
+    border-radius: 30px;
 }
 .content {
     flex: 1;
@@ -55,9 +62,43 @@ main {
 
 /* portfolio styles */
 #interests {
-    border: 4px rgb(55, 0, 255) ridge;
-    padding: 8px;
+    border: 3px rgb(0, 225, 255) ridge;
+    border-radius: 25px;
+    padding: 4px;
 }
-h2, h3 {
+h2 {
     margin: 0px;
+    color: #00e5ff;
+    border: #ffff00;
+    border-radius: 23px;
 }
+
+/* portfolio styles */
+.content h1 {
+    color: black;
+ font-family: fantasy ;
+}
+
+#portfolio {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#portfolio li {
+    background: #ffff00;
+    padding: 10px;
+    border-radius: 24px;
+    margin-bottom: 10px;
+}
+
+#portfolio li:hover {
+    background: #eee;
+}
+
+#portfolio a {
+    text-decoration: none;
+    color: #ff0000;
+    font-size: large;
+    font-family: fantasy;
+}
+ 
