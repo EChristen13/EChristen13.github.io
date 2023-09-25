@@ -1,11 +1,12 @@
 body {
   margin: 0px;
+  background-image: url(https://www.screenhub.com.au/wp-content/uploads/sites/4/2023/02/backrooms.png)
 }
 
 canvas {
-  background-color: lightgray;
+  background 
 }
 
 img {
-  display: none;
+  display: ;
 }
