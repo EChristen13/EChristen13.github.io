@@ -1,46 +1,70 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="index.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    </head>
-    <body>
-        <h1>RAM Clicker</h1>
-        <!-- <div class="top-box"> -->
-            <div class="main-box">
-                <div class="clicker-box">
-                   <img src="data:image/jpeg;base64,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" id="clicker-image">
-                   <p id="ram-amount">RAM: 0 bytes</p>
-                   <p2>RAM per second: 0 bytes</p2>
-                   
-                </div>
-                <div class="autoclicker-box">
 
-                </div>
-                <div class="upgrade-box">
-                    
-                </div>
+<head>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>RAM Clicker</h1>
+    <!-- <div class="top-box"> -->
+    <div class="main-box">
+        <div class="clicker-box">
+            <img src="data:image/jpeg;base64,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"
+                id="clicker-image">
+            <p id="ram-amount">RAM: 0 bytes</p>
+            <p2>RAM per second: 0 bytes</p2>
+
+        </div>
+        <div class="autoclicker-box">
+            <div class="autoclicker" id="autoclicker1" title="One byte of RAM per second">
+                <p>MicroSD Card</p>
+                <p id="microSD-count">Owned: 0</p>
+                <p id="microSD-cost">Cost: 50</p>
+                <button id="purchase-microSD">BUY ONE</button>
             </div>
-            <!-- <div class="credits">
+        </div>
+        <div class="upgrade-box">
+
+        </div>
+    </div>
+    <!-- <div class="credits">
 
             </div> -->
-        <!-- </div> -->
-        <script>
-            // Variables
-         var ram = 0
-      
-            // Core Functionality
+    <!-- </div> -->
+    <script>
+        // Variables
+        var ram = 0
+        var ramPerSecond = 0
+        var microSD = {
+            rps: 0.5, 
+            numberOwned: 0, 
+            basePrice: 50, 
+        };
+        var newCost = Math.ceil(microSD.baseCost * Math.pow(1.1, microSD.));
+        var cost = Math.ceil(microSD.baseCost * Math.pow(1.1, microSD.numberOwned));
+        // Core Functionality
 
 
-            // Event/Click Listeners
-            $("#clicker-image").on("click", downloadRAM);
+        // Event/Click Listeners
+        $("#clicker-image").on("click", backRooms);
+        $("#ram-amount").text("RAM: " + ram + " bytes");
+        $("#purchase-microSD").on("click", purchaseMicroSD);
+        $("#microSD-cost").text("Cost: " + newCost);
+        $("#microSD-count").text("Owned: " + microSD.numberOwned); 
 
-            // Functions
-            function downloadRAM() {
-               console.log(ram +1) 
-}
-            
-            /* All code above here */
-          </script>
-    </body>
+
+        // Functions
+        function backRooms() {
+            console.log(ram + 1)
+        }
+
+        function purchaseMicroSD() {
+  if (ram >= cost) {
+}  
+        /* All code above here */
+    </script>
+</body>
+
 </html>
