@@ -48,11 +48,12 @@ $(document).ready(function () {
   // TODO 2: add a new property to all data shapes
   for (var i = 0; i < dataShapes.length; i++) {
      var currentShape = dataShapes[i];
-     if (color = "red") {
+     if (currentShape.color === "red") {
 currentShape.goodBehavior = "bounce"
-    } else if (color = "blue") {
+    } else if (currentShape.color === "blue") {
       currentShape.goodBehavior = "blink"
-    } else currentShape.goodBehavior = "spin"
+    } else { currentShape.goodBehavior = "spin" }
+    console.log(currentShape)
   }
 
 
@@ -86,14 +87,14 @@ animationDetails.displayType = 3
   function goodDisplay() {
     // TODO 4-b: call your handleGood function
     var currentShape = dataShapes[currentIndex];
-    handleGood(currentShape)
+    handleGood(currentShape.color, currentShape.shape, currentShape.repeat)
   }
 
   function badDisplay() {
     // TODO 5-b: call your handleBad function
     var currentShape = dataShapes[currentIndex];
     var repeat = currentShape.repeat
-    handleBad(currentShape)
+    handleBad(currentShape, repeat)
   }
 
   /////////////////////////////////////////////////
