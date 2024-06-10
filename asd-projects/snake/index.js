@@ -108,14 +108,28 @@ function moveSnake() {
   /* 
   //TODO 11: Move each part of the snake's body such that it's body follows the head.
   
- 
-
-
-  //HINT: To complete this TODO we must figure out the next direction, row, and  column for each snakeSquare in the snake's body. The parts of the snake are 
-  stored in the Array snake.body and each part knows knows its current 
-  column/row properties. 
-  
   */
+
+  for (var i = snake.body.length - 1; i >= 1; i--) {
+    var snakeSquare = snake.body[i];
+
+    var nextSnakeSquare = snake.body[i - 1];
+    var nextRow = nextSnakeSquare.row;
+    var nextColumn = nextSnakeSquare.column;
+    var nextDirection = nextSnakeSquare.direction;
+
+    snakeSquare.direction = nextDirection;
+    snakeSquare.row = nextRow;
+    snakeSquare.column = nextColumn;
+    repositionSquare(snakeSquare);
+  }
+
+  /*
+    //HINT: To complete this TODO we must figure out the next direction, row, and  column for each snakeSquare in the snake's body. The parts of the snake are 
+    stored in the Array snake.body and each part knows knows its current 
+    column/row properties. 
+   
+    */
 
   //Before moving the head, check for a new direction from the keyboard input
   checkForNewDirection();
@@ -154,9 +168,9 @@ function hasHitWall() {
     return true
   } else if (snake.head.column > COLUMNS) {
     return true
-  } else if (snake.head.column < 0 ) {
+  } else if (snake.head.column < 0) {
     return true
-  } else if (snake.head.row <  0 ) {
+  } else if (snake.head.row < 0) {
     return true
   } else { return false }
 
@@ -168,10 +182,10 @@ function hasCollidedWithApple() {
   
   HINT: Both the apple and the snake's head are aware of their own row and column
   */
-// if (snake.head.row 
-if (snake.head.row === apple.row && snake.head.column === apple.column) {
-  return true 
-} else { return false; }
+  // if (snake.head.row 
+  if (snake.head.row === apple.row && snake.head.column === apple.column) {
+    return true
+  } else { return false; }
 
 }
 
@@ -193,18 +207,22 @@ function handleAppleCollision() {
   If the tail is moving "down", place the next snakeSquare above it.
   etc...
   */
-  var row = 0;
-  var column = 0;
+  var row = snake.tail.row;
+  var column = snake.tail.column;
 
   // code to determine the row and column of the snakeSquare to add to the snake
 
-  makeSnakeSquare(row, column);
+  if (snake.tail.direction === "up") {
+    row++
+  } else if (snake.tail.direction === "down") {
+    row--
+  } else if (snake.tail.direction === "right") {
+    column--
+  } else if (snake.tail.direction === "left") {
+    column++
+  }
 
-  if (snake.tail.direction === snake.tail.row) {
-    return true
-  } else if (snake.tail.direction === snake.tail.colomn) {
-    return true 
-  } else { return false }
+  makeSnakeSquare(row, column);
 }
 
 function hasCollidedWithSnake() {
@@ -217,20 +235,6 @@ function hasCollidedWithSnake() {
   head and each part of the snake's body also knows its own row and column.
   
   */
-
-  for (var i = snake.body.length - 1 ; i >= 0; i-- ) {
-    var snakeSquare = snake.body[i];
-
-    var nextSnakeSquare = snake.boy[i-1];
-    var nextRow = snake.boy[i-2];
-    var nextColumn = "???";
-    var nextDirection = "???";
-
-    snakeSquare.direction = nextDirection;
-    snakeSquare.row = nextRow;
-    snakeSquare.column = nextColumn;
-    repositionSquare(snakeSquare);
-}
 
   return false;
 }
