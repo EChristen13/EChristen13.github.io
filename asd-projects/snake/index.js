@@ -229,14 +229,24 @@ function hasCollidedWithSnake() {
   /* 
   TODO 12: Should return true if the snake's head has collided with any part of the
   snake's body.
-  
- 
+  */
+
+ /*
   HINT: Each part of the snake's body is stored in the snake.body Array. The
   head and each part of the snake's body also knows its own row and column.
   
   */
 
-  return false;
+  
+  
+  
+for (let i = 1; i < snake.body.length; i++) {
+
+  if (snake.head.row === snake.body[i].row && snake.head.column === snake.body[i].column) {
+    return true
+  }
+}
+
 }
 
 function endGame() {
@@ -302,7 +312,7 @@ function makeSnakeSquare(row, column) {
 function handleKeyDown(event) {
   // TODO 6a: make the handleKeyDown function register which key is pressed
   activeKey = event.which;
-  console.log(activeKey);
+  
   if (activeKey === KEY.LEFT) {
     snake.head.direction = "left";
   }
@@ -341,8 +351,16 @@ function getRandomAvailablePosition() {
     spaceIsAvailable to false so that a new position is generated.
     */
   }
-
-  return randomPosition;
+for (let i = 1; i < snake.body.length; i++){ 
+  if ( randomPosition.row === snake.body[i].row
+    && randomPosition.column === snake.body[i].column) {
+    spaceIsAvailable = false;
+  } 
+  
+}
+return randomPosition;
+  
+  
 }
 
 function calculateHighScore() {
@@ -357,3 +375,4 @@ function calculateHighScore() {
 
   return highScore;
 }
+
