@@ -20,10 +20,12 @@ function runProgram() {
   };
 
   // Game Item Objects
-  let walker; 
-  let speedX = 0
-  let speedY = 0
-  let coordinateX = 0
+  let walker = {
+    x: 0,
+    y: 0,
+    speedX: 0,
+    speedY: 0
+  }
 
   // one-time setup
   var interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
@@ -38,8 +40,9 @@ function runProgram() {
   by calling this function and executing the code inside.
   */
   function newFrame() {
-
-
+    repositionGameItem();
+    wallCollision();
+    redrawGameItem();
   }
 
   /* 
@@ -47,15 +50,19 @@ function runProgram() {
   */
   function handleKeyDown(event) {
     if (event.which === KEY.LEFT) {
+      walker.speedX = -5
       console.log("left pressed")
     }
     if (event.which === KEY.RIGHT) {
+      walker.speedX = -5
       console.log("right pressed")
     }
     if (event.which === KEY.UP) {
+      walker.speedY = -5
       console.log("up pressed")
     }
     if (event.which === KEY.DOWN) {
+      walker.speedY = -5
       console.log("down pressed")
     }
   }
@@ -73,4 +80,18 @@ function runProgram() {
     $(document).off();
   }
 
+  function repositionGameItem() {
+   walker.x+= walker.speedX
+    walker.y += walker.speedY
+  }
+  function  redrawGameItem() {}
+  $("#walker").css("top", walker.y)
+  $("#walker").css("bottom", walker.y)
+  $("#walker").css("left", walker.x)
+  $("#walker").css("right", walker.x)
+}
+
+function wallCollision() {
+  $("#board").width()
+  $("#board").height()
 }
