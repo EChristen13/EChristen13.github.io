@@ -29,7 +29,10 @@ function runProgram() {
 
   // one-time setup
   var interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
-  $(document).on('eventType', handleKeyDown);                           // change 'eventType' to the type of event you want to handle
+  $(document).on('keydown', handleKeyDown);
+  $(document).on("keyup", handleKeyUp);
+
+  // change 'eventType' to the type of event you want to handle
 
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
@@ -49,23 +52,45 @@ function runProgram() {
   Called in response to events.
   */
   function handleKeyDown(event) {
+    console.log(55)
     if (event.which === KEY.LEFT) {
       walker.speedX = -5
-      console.log("left pressed")
+
     }
     if (event.which === KEY.RIGHT) {
       walker.speedX = -5
-      console.log("right pressed")
+
     }
     if (event.which === KEY.UP) {
       walker.speedY = -5
-      console.log("up pressed")
+
     }
     if (event.which === KEY.DOWN) {
       walker.speedY = -5
-      console.log("down pressed")
+
+    }
+
+  }
+
+  function handleKeyUp() {
+    if (event.which === KEY.LEFT) {
+      walker.speedX = 0
+
+    }
+    if (event.which === KEY.RIGHT) {
+      walker.speedX = 0
+
+    }
+    if (event.which === KEY.UP) {
+      walker.speedY = 0
+
+    }
+    if (event.which === KEY.DOWN) {
+      walker.speedY = 0
+
     }
   }
+
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
@@ -81,14 +106,14 @@ function runProgram() {
   }
 
   function repositionGameItem() {
-   walker.x+= walker.speedX
+    walker.x += walker.speedX
     walker.y += walker.speedY
   }
-  function  redrawGameItem() {}
+  function redrawGameItem() { 
   $("#walker").css("top", walker.y)
-  $("#walker").css("bottom", walker.y)
   $("#walker").css("left", walker.x)
-  $("#walker").css("right", walker.x)
+ 
+  }
 }
 
 function wallCollision() {
