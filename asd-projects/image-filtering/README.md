@@ -95,7 +95,7 @@ Your first task is to create an `applyFilter` function. This is a big one, so we
 
 Now, for this step, you will need to alter your image. **This should be done in the body of the inner loop**, and is done in five steps (one line of code each, in order).
 
-- **2a)** Retrieve one of string values from the 2D `image` array using bracket notation; you should use the counting variables so that ultimately all values will be used. You will want to store this value in a variable called `rgbString`.
+- **2a)** Retrieve one of string values from the 2D `image`  using bracket notation; you should use the countinarrayg variables so that ultimately all values will be used. You will want to store this value in a variable called `rgbString`.
 
 - **2b)** Make a new `rgbNumbers` variable. Call `rgbStringToArray()` with `rgbString` as an argument, and `rgbStringToArray()` will return a new array. Store the returned array in the `rgbNumbers` variable.
 
