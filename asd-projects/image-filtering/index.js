@@ -21,7 +21,8 @@ function resetAndRender() {
 function applyAndRender() {
   // Multiple TODOs: Call your apply function(s) here
   applyFilter(reddify)
-
+  applyFilter(decreaseBlue)
+  applyFilter(increaseGreenByBlue)
   // do not change the below line of code
   render($("#display"), image);
 }
@@ -51,14 +52,20 @@ function applyFilter(filterFunction) {
 
 function applyFilterNoBackground() {
   var backGround = image[0][0];
-if ()
+
   for (var i = 0; i < image.length; i++) {
     for (var j = 0; j < image[i].length; j++) {
       var rgbString = image[i][j];
-      var rgbNumbers = rgbStringToArray(rgbString);
+      if (backGround === rgbString) {  
+
+      }
+      else { 
+     var rgbNumbers = rgbStringToArray(rgbString);
       filterFunction(rgbNumbers)
       rgbString = rgbArrayToString(rgbNumbers);
       image[i][j] = rgbString
+      }
+      
     }
   }
 }
@@ -70,7 +77,7 @@ function keepInBounds(num) {
     return 0
   } else if (num > 255) {
     return 255
-  } else { return num}
+  } else { return num }
 }
 
 // TODO 3: Create reddify function
@@ -86,7 +93,7 @@ function decreaseBlue(array) {
 
 
 function increaseGreenByBlue(array) {
-array[GREEN] = keepInBounds(array[BLUE] + array[GREEN]);
+  array[GREEN] = keepInBounds(array[BLUE] + array[GREEN]);
 }
 
 
