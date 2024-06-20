@@ -62,11 +62,11 @@ function runProgram() {
 
     }
     if (event.which === KEY.UP) {
-      walker.speedY = -5
+      walker.speedY = +5
 
     }
     if (event.which === KEY.DOWN) {
-      walker.speedY = -5
+      walker.speedY = +5
 
     }
 
