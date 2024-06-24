@@ -52,21 +52,20 @@ function runProgram() {
   Called in response to events.
   */
   function handleKeyDown(event) {
-    console.log(55)
     if (event.which === KEY.LEFT) {
       walker.speedX = -5
 
     }
     if (event.which === KEY.RIGHT) {
-      walker.speedX = -5
+      walker.speedX = 5
 
     }
     if (event.which === KEY.UP) {
-      walker.speedY = +5
+      walker.speedY = -5
 
     }
     if (event.which === KEY.DOWN) {
-      walker.speedY = +5
+      walker.speedY = 5
 
     }
 
@@ -109,14 +108,28 @@ function runProgram() {
     walker.x += walker.speedX
     walker.y += walker.speedY
   }
-  function redrawGameItem() { 
-  $("#walker").css("top", walker.y)
-  $("#walker").css("left", walker.x)
- 
+
+  function redrawGameItem() {
+    $("#walker").css("top", walker.y)
+    $("#walker").css("left", walker.x)
+
   }
+
+  function wallCollision() {
+    //check if walker has gone past the right
+    if (walker.x > $("#board").width()) {
+      walker.x -= walker.speedX
+    } else if (walker.x < 0) {
+      walker.x -= walker.speedX
+    }
+    // check if walker has gone past the bottom
+    if (walker.y > $("#board").height()) {
+      walker.y -= walker.speedY
+    } else if (walker.y < 0) {
+      walker.y -= walker.speedY
+    }
+  }
+
 }
 
-function wallCollision() {
-  $("#board").width()
-  $("#board").height()
-}
+
