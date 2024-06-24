@@ -70,9 +70,8 @@ main {
 }
 h2 {
     margin: 0px;
-    color: #3300ff;
-    border: #ffff00;
-    border-radius: 23px;
+    color: #3300ffd1;
+    font-family: sans-serif;
 }
 
 /* portfolio styles */
