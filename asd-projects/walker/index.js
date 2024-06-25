@@ -27,14 +27,16 @@ function runProgram() {
     x: 0,
     y: 0,
     speedX: 0,
-    speedY: 0
+    speedY: 0,
+    id: '#walker'
   }
 
   let walker2 = {
     x: 0,
     y: 0,
     speedX: 0,
-    speedY: 0
+    speedY: 0,
+    id: '#walker2'
   }
 
   const WALLS = {
@@ -87,21 +89,21 @@ function runProgram() {
 
     }
 
-//walker 2 keys
+    //walker 2 keys
     if (event.which === KEY.A) {
-      walker.speedX = -5
+      walker2.speedX = -5
 
     }
     if (event.which === KEY.D) {
-      walker.speedX = 5
+      walker2.speedX = 5
 
     }
     if (event.which === KEY.W) {
-      walker.speedY = -5
+      walker2.speedY = -5
 
     }
     if (event.which === KEY.S) {
-      walker.speedY = 5
+      walker2.speedY = 5
 
     }
   }
@@ -127,19 +129,19 @@ function runProgram() {
     //walker 2 keys
 
     if (event.which === KEY.A) {
-      walker.speedX = 0
+      walker2.speedX = 0
 
     }
     if (event.which === KEY.D) {
-      walker.speedX = 0
+      walker2.speedX = 0
 
     }
     if (event.which === KEY.W) {
-      walker.speedY = 0
+      walker2.speedY = 0
 
     }
     if (event.which === KEY.S) {
-      walker.speedY = 0
+      walker2.speedY = 0
 
     }
   }
@@ -148,42 +150,94 @@ function runProgram() {
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
-
-
-  function endGame() {
-    // stop the interval timer
-    clearInterval(interval);
-
-    // turn off event handlers
-    $(document).off();
-  }
-
-  function repositionGameItem() {
-    walker.x += walker.speedX
-    walker.y += walker.speedY
-  }
-
-  function redrawGameItem() {
-    $("#walker").css("top", walker.y)
-    $("#walker").css("left", walker.x)
-
-  }
-
-  function wallCollision() {
-    //check if walker has gone past the right
-    if (walker.x > $("#board").width()) {
-      walker.x -= walker.speedX
-    } else if (walker.x < 0) {
-      walker.x -= walker.speedX
-    }
-    // check if walker has gone past the bottom
-    if (walker.y > $("#board").height()) {
-      walker.y -= walker.speedY
-    } else if (walker.y < 0) {
-      walker.y -= walker.speedY
+  
+  function randomIt() {
+    let randomNum = Math.random();
+    if (randomNum < 0.10) {
+      walker = true;
+    } else {
+      walker2 = true;
     }
   }
 
+    function spawnReset() {
+      walker.x = 50;
+      walker.y = 50;
+      walker2.x = walls.RIGHT - 100;
+      walker2.y = walls.BOTTOM - 100;
+    }
+    function endGame() {
+      // stop the interval timer
+      clearInterval(interval);
+
+      // turn off event handlers
+      $(document).off();
+    }
+
+    function repositionGameItem() {
+      walker.x += walker.speedX
+      walker.y += walker.speedY
+      walker2.x += walker2.speedX
+      walker2.y += walker2.speedY
+    }
+
+    function redrawGameItem() {
+      $("#walker").css("top", walker.y)
+      $("#walker").css("left", walker.x)
+      $("#walker2").css("top", walker2.y)
+      $("#walker2").css("left", walker2.x)
+
+    }
+
+    function wallCollision() {
+      //check if walker has gone past the right
+      var walkerRight = walker.x + $("#walker").width();
+      var walkerBottom = walker.y + $("#walker").height();
+      var walker2Right = walker2.x + $("#walker2").width();
+      var walker2Bottom = walker2.y + $("#walker2").height();
+
+      if (walkerRight > $("#board").width()) {
+        walker.x -= walker.speedX
+      } else if (walker.x < 0) {
+        walker.x -= walker.speedX
+      }
+
+      if (walker2Right > $("#board").width()) {
+        walker2.x -= walker2.speedX
+      } else if (walker2.x < 0) {
+        walker2.x -= walker2.speedX
+      }
+      // check if walker has gone past the bottom
+      if (walkerBottom > $("#board").height()) {
+        walker.y -= walker.speedY
+      } else if (walker.y < 0) {
+        walker.y -= walker.speedY
+      }
+
+      if (walker2Bottom > $("#board").height()) {
+        walker2.y -= walker2.speedY
+      } else if (walker2.y < 0) {
+        walker2.y -= walker2.speedY
+      }
+    }
+
+    function walkerCollision() {
+var walkerLeft = walker.x
+var walkerTop = walker.y
+var walker2Right = walker2.x + walker2.width();
+var walker2Bottom = walker2.y + walker2.height();
+
+if (walker2Right > walkerLeft && 
+  walker2Left < walkerRight) {
+
+  }
+if (walker2Bottom > walkerTop &&
+walker2Top < walkerBottom ) {
+  
 }
+
+
+    }
+  }
 
 
