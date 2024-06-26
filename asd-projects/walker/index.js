@@ -32,8 +32,8 @@ function runProgram() {
   }
 
   let walker2 = {
-    x: 0,
-    y: 0,
+    x: 200,
+    y: 200,
     speedX: 0,
     speedY: 0,
     id: '#walker2'
@@ -66,6 +66,7 @@ function runProgram() {
     repositionGameItem();
     wallCollision();
     redrawGameItem();
+    walkerCollision();
   }
 
   /* 
@@ -150,7 +151,7 @@ function runProgram() {
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
-  
+
   function randomIt() {
     let randomNum = Math.random();
     if (randomNum < 0.10) {
@@ -160,84 +161,95 @@ function runProgram() {
     }
   }
 
-    function spawnReset() {
-      walker.x = 50;
-      walker.y = 50;
-      walker2.x = walls.RIGHT - 100;
-      walker2.y = walls.BOTTOM - 100;
-    }
-    function endGame() {
-      // stop the interval timer
-      clearInterval(interval);
+  function spawnReset() {
+    walker.x = 50;
+    walker.y = 50;
+    walker2.x = walls.RIGHT - 100;
+    walker2.y = walls.BOTTOM - 100;
+  }
+  function endGame() {
+    // stop the interval timer
+    clearInterval(interval);
 
-      // turn off event handlers
-      $(document).off();
-    }
+    // turn off event handlers
+    $(document).off();
+  }
 
-    function repositionGameItem() {
-      walker.x += walker.speedX
-      walker.y += walker.speedY
-      walker2.x += walker2.speedX
-      walker2.y += walker2.speedY
-    }
+  function repositionGameItem() {
+    walker.x += walker.speedX
+    walker.y += walker.speedY
+    walker2.x += walker2.speedX
+    walker2.y += walker2.speedY
+  }
 
-    function redrawGameItem() {
-      $("#walker").css("top", walker.y)
-      $("#walker").css("left", walker.x)
-      $("#walker2").css("top", walker2.y)
-      $("#walker2").css("left", walker2.x)
-
-    }
-
-    function wallCollision() {
-      //check if walker has gone past the right
-      var walkerRight = walker.x + $("#walker").width();
-      var walkerBottom = walker.y + $("#walker").height();
-      var walker2Right = walker2.x + $("#walker2").width();
-      var walker2Bottom = walker2.y + $("#walker2").height();
-
-      if (walkerRight > $("#board").width()) {
-        walker.x -= walker.speedX
-      } else if (walker.x < 0) {
-        walker.x -= walker.speedX
-      }
-
-      if (walker2Right > $("#board").width()) {
-        walker2.x -= walker2.speedX
-      } else if (walker2.x < 0) {
-        walker2.x -= walker2.speedX
-      }
-      // check if walker has gone past the bottom
-      if (walkerBottom > $("#board").height()) {
-        walker.y -= walker.speedY
-      } else if (walker.y < 0) {
-        walker.y -= walker.speedY
-      }
-
-      if (walker2Bottom > $("#board").height()) {
-        walker2.y -= walker2.speedY
-      } else if (walker2.y < 0) {
-        walker2.y -= walker2.speedY
-      }
-    }
-
-    function walkerCollision() {
-var walkerLeft = walker.x
-var walkerTop = walker.y
-var walker2Right = walker2.x + walker2.width();
-var walker2Bottom = walker2.y + walker2.height();
-
-if (walker2Right > walkerLeft && 
-  walker2Left < walkerRight) {
+  function redrawGameItem() {
+    $("#walker").css("top", walker.y)
+    $("#walker").css("left", walker.x)
+    $("#walker2").css("top", walker2.y)
+    $("#walker2").css("left", walker2.x)
 
   }
-if (walker2Bottom > walkerTop &&
-walker2Top < walkerBottom ) {
-  
+
+  function wallCollision() {
+    //check if walker has gone past the right
+    var walkerRight = walker.x + $("#walker").width();
+    var walkerBottom = walker.y + $("#walker").height();
+    var walker2Right = walker2.x + $("#walker2").width();
+    var walker2Bottom = walker2.y + $("#walker2").height();
+
+    if (walkerRight > $("#board").width()) {
+      walker.x -= walker.speedX
+    } else if (walker.x < 0) {
+      walker.x -= walker.speedX
+    }
+
+    if (walker2Right > $("#board").width()) {
+      walker2.x -= walker2.speedX
+    } else if (walker2.x < 0) {
+      walker2.x -= walker2.speedX
+    }
+    // check if walker has gone past the bottom
+    if (walkerBottom > $("#board").height()) {
+      walker.y -= walker.speedY
+    } else if (walker.y < 0) {
+      walker.y -= walker.speedY
+    }
+
+    if (walker2Bottom > $("#board").height()) {
+      walker2.y -= walker2.speedY
+    } else if (walker2.y < 0) {
+      walker2.y -= walker2.speedY
+    }
+  }
+
+  function walkerCollision() {
+    var walkerLeft = walker.x
+    var walkerTop = walker.y
+    var walkerRight = walker.x + $("#walker").width();
+    var walkerBottom = walker.y + $("#walker").height();
+    var walker2Left = walker2.x
+    var walker2Top = walker2.y
+    var walker2Right = walker2.x + $("#walker2").width();
+    var walker2Bottom = walker2.y + $("#walker2").height();
+
+    if (walker2Right > walkerLeft &&
+      walker2Left < walkerRight &&
+      walker2Top < walkerBottom &&
+      walker2Bottom > walkerTop) {
+      return true
+    }
+    return false;
+  }
+
+  function tagYourIt(walker1, walker2) {
+    if (walker1.x < (walker2.x + walker2.width &&
+      (walker1.x + walker1.width) > walker2.x &&
+      walker1.y < (walker2.y + walker2.height) &&
+      (walker1.y + walker1.height) > walker2.y)) {
+      if (walker1) {
+     
+      }
+    }  
+    spawnReset();
+  }
 }
-
-
-    }
-  }
-
-
